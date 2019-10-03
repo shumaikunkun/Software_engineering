@@ -1,4 +1,3 @@
-// sample 1-3
 #include <stdio.h>
 int main(){
   char proverb[50];
