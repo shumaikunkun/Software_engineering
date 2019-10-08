@@ -1,3 +1,4 @@
+//ポインタを用いて値を入れ替える
 #include <stdio.h>
 
 void exchange(int *x, int *y){
@@ -10,11 +11,12 @@ void exchange(int *x, int *y){
   copy = x;
   printf("copy=x:%p\n",copy);
 
-  x=y;
+  x = y;
   printf("x=y:%p\n",x);
 
-  y=copy;
+  y = copy;
   printf("y=copy:%p\n",y);
+
 }
 
 int main(){
