@@ -8,6 +8,15 @@
 int main(){
   int arr[ROW][COL];
 
+  int** c = (int**)malloc(sizeof(int*)*ROW);
+
+
+  *c = (int*)malloc(sizeof(int)*COL);
+  *(c+1) = (int*)malloc(sizeof(int)*COL);
+  *(c+2) = (int*)malloc(sizeof(int)*COL);
+
+
+
   // printf("%p\n",arr);  //arr[0] p
   // printf("%p\n",arr+1);
   // printf("%p\n",arr+2);
@@ -26,13 +35,13 @@ int main(){
 
   for(int i=0; i<ROW; i++){
     for(int j=0; j<COL; j++){
-      *(*(arr+i)+j)=10;
+      *(*(c+i)+j)=10;
     }
   }
 
   for(int i=0; i<ROW; i++){
     for(int j=0; j<COL; j++){
-      printf("%d\n",*(*(arr+i)+j));
+      printf("%d\n",*(*(c+i)+j));
     }
   }
 }
