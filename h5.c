@@ -1,4 +1,4 @@
-//puts関数とポインタを用いてprintf関数を実装
+//putc関数とポインタを用いてprintf関数を実装
 #include <stdio.h>
 #include <stdlib.h>
 
