@@ -2,32 +2,18 @@
 #include <stdio.h>
 
 void exchange(int *x, int *y){
-  int* copy;
-
-  printf("copy:%p\n",copy);
-  printf("x:%p\n",x);
-  printf("y:%p\n",y);
-
-  copy = x;
-  printf("copy=x:%p\n",copy);
-
-  x = y;
-  printf("x=y:%p\n",x);
-
-  y = copy;
-  printf("y=copy:%p\n",y);
-
+  int *copy;
+  *copy = *x;
+  *x = *y;
+  *y = *copy;
 }
 
 int main(){
-  int x;
-  int y;
+  int x, y;
   printf("Input 2 numbers.\n");
   scanf("%d",&x);
   scanf("%d",&y);
-  printf("%d,%d\n",x,y);
-  printf("%p,%p\n",&x,&y);
+  printf("Before exchange, x=%d,y=%d\n",x,y);
   exchange(&x,&y);
-  printf("%d,%d\n",x,y);
-  printf("%p,%p\n",&x,&y);
+  printf("After exchange, x=%d,y=%d\n",x,y);
 }
