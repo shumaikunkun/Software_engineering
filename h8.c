@@ -8,6 +8,8 @@ typedef struct node {
   struct node* next;
 } node;
 
+node* sub(node* a){ return a->next = (node*)malloc(sizeof(node)); }  //次の領域を確保し、そのポインタを返す
+
 int main(){
   node *a, *head;
   a = (node*)malloc(sizeof(node));
@@ -18,28 +20,24 @@ int main(){
   fp_add = fopen("add.txt", "r");  //追加用のデータファイル
 
   int n;
-  printf("何番目にデータを挿入しますか？\n");
+  printf("何番目にデータを挿入しますか？(0-5)\n");
   scanf("%d",&n);  //追加するインデックスを入力
-
-  int i=0;
+  
   if(n==0){  //0番目だった時の挿入処理
     fscanf(fp_add, "%s %s", a->name, a->email);
-    a->next = (node*)malloc(sizeof(node));  //次の領域を確保
-    a = a->next;  //次の領域に移動
+    a = sub(a);  //次の領域に移動
   }
+  int i = 0;
   while(fscanf(fp, "%s %s", a->name, a->email)!=EOF){
-    a->next = (node*)malloc(sizeof(node));  //次の領域を確保
-    a = a->next;  //次の領域に移動
-    i++;
-    if(i==n){  //挿入処理
+    a = sub(a);  //次の領域に移動
+    if((++i)==n){  //1-5番目の場合の挿入処理, iをインクリメント
       fscanf(fp_add, "%s %s", a->name, a->email);
-      a->next = (node*)malloc(sizeof(node));  //次の領域を確保
-      a = a->next;  //次の領域に移動
+      a = sub(a);  //次の領域に移動
     }
   }
 
   a = head;  //先頭に戻る
-
+  //以下一覧表示
   while(1){
     if(a->next == NULL){
       break;
