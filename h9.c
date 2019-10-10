@@ -34,5 +34,4 @@ int main(){
   printf("5.%s\n", a->next2->name);
   printf("6.%s\n", a->next2->next1->name);
   printf("7.%s\n", a->next2->next2->name);
-
 }
