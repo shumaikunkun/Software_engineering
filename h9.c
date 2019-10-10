@@ -11,27 +11,22 @@ typedef struct node {
 node* sub(FILE* fp, node* a, int n){
   a=(node*)malloc(sizeof(node));
   fscanf(fp, "%s", a->name);
-  if(n==0){  //葉まで達したらnodeメンバをNULLにして抜ける
-    a->next1=NULL;
-    a->next2=NULL;
-  }else{
-    a->next1=sub(fp, a->next1, n-1);
-    a->next2=sub(fp, a->next2, n-1);
-  }
+  a->next1 = n==0? NULL : sub(fp, a->next1, n-1);  //最深まで到達したら、次のノードへのポインタはNULL
+  a->next2 = n==0? NULL : sub(fp, a->next2, n-1);
   return a;  //ポインタを返す
 }
 
 int main(){
   FILE *fp;
-  fp = fopen("tree.txt", "r");
+  fp = fopen("tree.txt", "r");  //構造体にデータを入力するファイル
   node *a;
   a = sub(fp, a, 2);  //深さ２までの木構造, ポインタを戻す
 
-  printf("1.%s\n", a->name);
-  printf("2.%s\n", a->next1->name);
-  printf("3.%s\n", a->next1->next1->name);
-  printf("4.%s\n", a->next1->next2->name);
-  printf("5.%s\n", a->next2->name);
-  printf("6.%s\n", a->next2->next1->name);
-  printf("7.%s\n", a->next2->next2->name);
+  printf("%s\n", a->name);
+  printf("　%s\n", a->next1->name);
+  printf("　　%s\n", a->next1->next1->name);
+  printf("　　%s\n", a->next1->next2->name);
+  printf("　%s\n", a->next2->name);
+  printf("　　%s\n", a->next2->next1->name);
+  printf("　　%s\n", a->next2->next2->name);
 }
