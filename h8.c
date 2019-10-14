@@ -11,29 +11,17 @@ typedef struct node {
 node* sub(node* a){ return a->next = (node*)malloc(sizeof(node)); }  //次の領域を確保し、そのポインタを返す
 
 int main(){
-  node *a, *head;
-  a = (node*)malloc(sizeof(node));
-  head = a;  //先頭ポインタをメモ
-  FILE *fp;
-  fp = fopen("company.txt", "r");
-  FILE *fp_add;
-  fp_add = fopen("add.txt", "r");  //追加用のデータファイル
-
-  int n;
+  node* a = (node*)malloc(sizeof(node));
+  node* head = a;  //先頭ポインタをメモ
+  FILE* fp = fopen("company.txt", "r");
+  FILE* fp_add = fopen("add.txt", "r");  //追加用のデータファイル
   printf("何番目にデータを挿入しますか？(0-5)\n");
+  int n;
   scanf("%d",&n);  //追加するインデックスを入力
-  
-  if(n==0){  //0番目だった時の挿入処理
-    fscanf(fp_add, "%s %s", a->name, a->email);
-    a = sub(a);  //次の領域に移動
-  }
-  int i = 0;
-  while(fscanf(fp, "%s %s", a->name, a->email)!=EOF){
-    a = sub(a);  //次の領域に移動
-    if((++i)==n){  //1-5番目の場合の挿入処理, iをインクリメント
-      fscanf(fp_add, "%s %s", a->name, a->email);
-      a = sub(a);  //次の領域に移動
-    }
+
+  for(int i=0; i<6; i++){
+    fscanf(i==n ? fp_add : fp, "%s %s", a->name, a->email);
+    a = sub(a);
   }
 
   a = head;  //先頭に戻る
