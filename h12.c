@@ -2,9 +2,7 @@
 #include <stdio.h>
 int main(){
   char c;
-  FILE* fin;
-  fin=fopen("goods.txt", "r");
-  FILE* fout;
-  fout=fopen("goods2.txt", "w");
+  FILE* fin = fopen("goods.txt", "r");
+  FILE* fout = fopen("goods2.txt", "w");
   while((c = getc(fin)) != -1){ putc(c, fout); }
 }
