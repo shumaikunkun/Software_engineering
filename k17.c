@@ -8,18 +8,16 @@ typedef struct node {
   struct node* next;
 } node;
 
-int main(){
-  node *a, *head;
-  a = (node*)malloc(sizeof(node));
-  head = a;  //先頭ポインタをメモ
+node* sub(node* a){ return a->next = (node*)malloc(sizeof(node)); }  //次の領域を確保し、そのポインタを返す
 
-  while(scanf("%s %s", a->name, a->email)!=EOF){
-    a->next = (node*)malloc(sizeof(node));  //次の領域を確保
-    a = a->next;  //次の領域に移動
-  }
+int main(){
+  node* a = (node*)malloc(sizeof(node));
+  node* head = a;  //先頭ポインタをメモ
+
+  while(scanf("%s %s", a->name, a->email)!=EOF){ a = sub(a); }
 
   a = head;  //先頭に戻る
-
+  //以下一覧表示の処理
   while(1){
     if(a->next == NULL){
       break;
