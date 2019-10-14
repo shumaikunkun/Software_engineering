@@ -9,7 +9,7 @@ typedef struct node {
 } node;
 
 node* sub(FILE* fp, node* a, int n){
-  a=(node*)malloc(sizeof(node));
+  a = (node*)malloc(sizeof(node));
   fscanf(fp, "%s", a->name);
   a->next1 = n==0? NULL : sub(fp, a->next1, n-1);  //最深まで到達したら、次のノードへのポインタはNULL
   a->next2 = n==0? NULL : sub(fp, a->next2, n-1);
@@ -17,10 +17,8 @@ node* sub(FILE* fp, node* a, int n){
 }
 
 int main(){
-  FILE *fp;
-  fp = fopen("tree.txt", "r");  //構造体にデータを入力するファイル
-  node *a;
-  a = sub(fp, a, 2);  //深さ２までの木構造, ポインタを戻す
+  FILE* fp = fopen("tree.txt", "r");  //構造体にデータを入力するファイル
+  node* a = sub(fp, a, 2);  //深さ２までの木構造, ポインタを戻す
 
   printf("%s\n", a->name);
   printf("　%s\n", a->next1->name);
