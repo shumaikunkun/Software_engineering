@@ -8,22 +8,19 @@ typedef struct person {
 } personData;
 
 int main(){
-  int i;
-  personData *friends, *emailbook;  //メンバのポインタ
   int friendsNum = 3;
-  emailbook = (personData*)malloc(sizeof(personData) * friendsNum); friends = emailbook;
-  for(i = 0; i < friendsNum; i++){
+  personData* emailbook = (personData*)malloc(sizeof(personData) * friendsNum);
+  personData* friends = emailbook;
+  for(int i = 0; i < friendsNum; i++){
     printf("What is the name of friend %i?\n", i);
     scanf("%s", friends->name);
     printf("What is the email address of %s?\n", friends->name);
     scanf("%s", friends->email);
     friends++;
   }
-  printf("\n");
   friends = emailbook;
-  for(i = 0; i < friendsNum; i++){
-    printf("Friend %d: %s, ", i, friends->name);
-    printf("lives in %s\n", friends->email);
+  for(int i = 0; i < friendsNum; i++){
+    printf("Friend %d: %s, lives in %s\n", i, friends->name, friends->email);
     friends++;
   }
 }
